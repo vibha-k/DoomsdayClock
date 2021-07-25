@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+    <html lang='en'>
+        <header>
+            <h1 id = "title"><b>DOOMSDAY CLOCK</b></h1>
+        </header>
+
+        <head>
+            <title>Doomsday Clock</title>
+            <meta charset='UFT-8' name='viewport' content='width=device-width, initial=scale=1.0' >
+        </head>
+
+        <body>
+            <div id='main-container'>
+                <h2 id='clock'></h2>
+                <!--<span id='time'></span>-->
+                <!--<button onclick="myFunction()">Test</button>-->
+                <button onclick= "myUSA()" type="button" id = "but">United States</button>
+                <button onclick= "gbr()" type="button" id = "but">Great Britain</button>
+                <button onclick= "jpn()" type="button" id = "but">Japan</button>
+            </div>
+            <script>
+                var time = "00:00:00";
+                var curr_cpi = 0;
+                const us_cpi = "RATEINF/CPI_USA";
+                const gbr_cpi = "RATEINF/CPI_GBR";
+                const jpn_cpi = "RATEINF/CPI_JPN";
+                function myFunction(){
+                    alert("I am an alert box!");
+                }
+                async function getCPI(countryCode) {
+                    const cpi_url = "https://www.quandl.com/api/v3/datasets/"+ countryCode +"?start_date=2021-06-30&end_date=2021-06-30&api_key=x_kVnqyL8XvsfuhgD8Dw";
+                    const response = await fetch(cpi_url);
+                    const data = await response.json();
+                    console.log(data.dataset.data[0][1]);
+                    cpi = data.dataset.data[0][1];
+                    console.log("Val" + cpi);
+                    return cpi;
+                }
+                function myUSA(){ 
+                    getCPI(us_cpi).then(curr_cpi =>{
+                        console.log("myUSA" + curr_cpi);
+                        reEval(curr_cpi);
+                      
+                    });
+                    
+                }
+                function gbr(){
+                    getCPI(gbr_cpi).then(curr_cpi =>{
+                        console.log("gbr"+curr_cpi);
+                        reEval(curr_cpi);
+                    });
+                    
+                }
+                function jpn(){
+                    getCPI(jpn_cpi).then(curr_cpi =>{
+                        console.log("jpn"+curr_cpi);
+                        reEval(curr_cpi);
+                    });
+                    
+                }
+                function reEval(curr_cpi){
+                    if(curr_cpi >= 300){
+                        time = "12:00:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi  >= 290){
+                        time = "11:51:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi >= 280){
+                        time = "11:42:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if (curr_cpi >= 270){
+                        time = "11:33:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi  >= 260){
+                        time = "11:24:00"
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi >= 250){
+                        time = "11:15:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if (curr_cpi >= 240){
+                        time = "11:06:00"
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi  >= 230){
+                        time = "10:57:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi >= 220){
+                        time = "10:48:00"
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if (curr_cpi >= 210){
+                        time = "10:39:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi  >= 200){
+                        time = "10:32:00"
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi >= 190){
+                        time = "10:23:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if (curr_cpi >= 180){
+                        time = "10:14:00"
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi  >= 170){
+                        time = "10:05:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi >= 160){
+                        time = "9:56:00"
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if (curr_cpi >= 150){
+                        time = "9:47:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi  >= 140){
+                        time = "9:38:00"
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi >= 130){
+                        time = "9:23:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if (curr_cpi >= 120){
+                        time = "9:14:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else if(curr_cpi  >= 110){
+                        time = "9:05:00";
+                        document.getElementById("clock").innerHTML = time;
+
+                    }
+                    else if(curr_cpi >= 100){
+                        time = "8:56:00";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                    else{
+                        time = "time to get a watch :)";
+                        document.getElementById("clock").innerHTML = time;
+                    }
+                }
+                //document.getElementById('time').textContent = time;
+            </script>
+        </body>
+    </html>
+
+<style>
+* {
+	box-sizing: border-box;
+}
+
+html {
+    padding-top:50px;
+}
+
+#title{
+    color: white;
+	text-align: center;
+	font-size: 50px;
+} 
+
+#but{
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-right: 75px;
+}
+
+body {
+    border: 8px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    padding: 40px;
+    width: 60%;
+    height: 400px;
+    margin: 0 auto;
+    background: url('https://www.ccn.com/wp-content/uploads/2020/09/Red-chart-NTB-123.jpg');
+}
+
+#clock{
+    height:120px;
+    font-size: 40px;
+    font-family: arial;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  color: white;
+}
+
+h2 {
+	text-align:center;
+  
+
+}
+
+#alarm-container {
+	text-align:center;
+    font-family: Verdana;
+    font-size: 0.6em;
+    padding: 0.7em;
+  color: white;
+}
+
+label {
+	display:inline-block;
+}
+
+.timeofday {
+    background-color: rgb(255, 255, 255);
+}
+
+.bigger {
+    font-weight:bold;
+    font-size: 18px;
+}
+
+#sounds {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#clearButton {
+    float:right;
+    background-color:red;
+    margin-top:10px;
+}
+</style>
